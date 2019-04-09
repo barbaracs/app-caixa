@@ -78,6 +78,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   overflow: auto;
+  border-right: 1px solid gray;
 
   &__numbers {
     width: 100px;
