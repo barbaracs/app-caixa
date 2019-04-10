@@ -2,21 +2,23 @@
   <div class="register">
     <div class="register__header">Cash App</div>
 
-    <div class="register__container">
+    <div class="register__container" v-if="! tableSelected">
+      <span class="register__title">Selecione a mesa</span>
       <div class="tables">
         <div
           class="tables__numbers"
           v-for="(table, index) in Tables"
           :key="index"
           @click="getTable(table)"
-          :class="tableHelperClass(table)"
         >{{ table.number }}</div>
       </div>
+    </div>
 
       <orders
+        v-if="tableSelected"
         :table-info="tableInfo"
+        @show-tables="showTables()"
       ></orders>
-    </div>
 
   </div>
 </template>
@@ -35,17 +37,17 @@ export default {
   data: () => ({
     Tables,
     tableInfo: undefined,
+    tableSelected: false,
   }),
 
   methods: {
     getTable(table) {
       this.tableInfo = table;
+      this.tableSelected = true;
     },
 
-    tableHelperClass(table) {
-      return {
-        'is-table-active': this.tableInfo === table,
-      };
+    showTables() {
+      this.tableSelected = false;
     },
   },
 };
@@ -57,6 +59,8 @@ export default {
   flex-direction: column;
   width: 100%;
   height: 100%;
+  background-color: #dfdcdc;
+  user-select: none;
 
   &__header {
     padding: 10px;
@@ -67,18 +71,25 @@ export default {
   &__container {
     height: 100%;
     display: flex;
-    flex-direction: row;
-    background-color: #dfdcdc;
+    flex-direction: column;
+    align-self: center;
+  }
+
+  &__title {
+    align-self: center;
+    font-size: 18px;
+    padding: 10px 0px 10px 0px;
   }
 }
 
 .tables {
-  max-width: 450px;
-  padding: 5px 0px 5px 20px;
+  max-width: 415px;
+  padding: 5px 0px 5px 5px;
   display: flex;
   flex-wrap: wrap;
   overflow: auto;
-  border-right: 1px solid gray;
+  // align-items: center;
+  // width: 100%;
 
   &__numbers {
     width: 100px;
@@ -93,10 +104,6 @@ export default {
 
     &:hover {
       cursor: pointer;
-      background-color: #bcd2ee;
-    }
-
-    &.is-table-active {
       background-color: #bcd2ee;
     }
   }

@@ -1,8 +1,18 @@
 <template>
   <div class="left-part" v-if="tableInfo !== null || undefined">
     <div class="left-part__info">
-      <div class="orders__table">
-        {{ 'Mesa ' + tableInfo.number }}
+
+      <div class="orders__header">
+        {{ getTableNumber }}
+        <div
+          class="orders__header__btn"
+          @click="backToTables()"
+        >
+          <span class="orders__header__btn__text">
+            Voltar
+            <i class="fas fa-reply orders__header__btn__icon"></i>
+          </span>
+        </div>
       </div>
 
       <div class="orders__sub-header">
@@ -46,6 +56,10 @@ export default {
   },
 
   computed: {
+    getTableNumber() {
+      return `Mesa ${this.tableInfo.number}`;
+    },
+
     sumTotal() {
       let total = 0;
       this.tableInfo.orders.forEach((order) => {
@@ -53,6 +67,12 @@ export default {
       });
 
       return total;
+    },
+  },
+
+  methods: {
+    backToTables() {
+      this.$emit('show-tables');
     },
   },
 };
@@ -65,6 +85,8 @@ export default {
   height: 100%;
   box-sizing: border-box;
   padding: 20px;
+  max-width: 460px;
+  overflow: hidden;
 
   &__info {
     overflow-y: hidden;
@@ -82,10 +104,28 @@ export default {
 }
 
 .orders {
-  width: 800px;
+  overflow: auto;
 
-  &__table {
+  &__header {
     font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+
+    &__btn {
+      border: 1px solid gray;
+      border-radius: 2px;
+      background-color: #d3d3d3;
+      cursor: pointer;
+
+      &__icon {
+        // color: blue;
+      }
+
+      &__text {
+        font-size: 18px;
+        padding: 3px;
+      }
+    }
   }
 
   &__sub-header {
