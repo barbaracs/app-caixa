@@ -88,8 +88,6 @@ export default {
   display: flex;
   flex-wrap: wrap;
   overflow: auto;
-  // align-items: center;
-  // width: 100%;
 
   &__numbers {
     width: 100px;

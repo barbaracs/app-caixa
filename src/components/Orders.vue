@@ -10,7 +10,7 @@
         >
           <span class="orders__header__btn__text">
             Voltar
-            <i class="fas fa-reply orders__header__btn__icon"></i>
+            <i class="fas fa-reply"></i>
           </span>
         </div>
       </div>
@@ -81,22 +81,21 @@ export default {
 <style lang="scss">
 .left-part {
   position: relative;
-  display: flex;
+  width: 100%;
   height: 100%;
   box-sizing: border-box;
   padding: 20px;
-  max-width: 460px;
   overflow: hidden;
+  align-self: center;
 
   &__info {
     overflow-y: hidden;
     position: relative;
-    flex-grow: 1;
   }
 
   &__total {
-    position: absolute;
-    padding:0 0 200px 20px;
+    // position: absolute;
+    padding-top: 100px;
     bottom: 0;
     right: 0;
     left: 0;
@@ -117,41 +116,41 @@ export default {
       background-color: #d3d3d3;
       cursor: pointer;
 
-      &__icon {
-        // color: blue;
-      }
-
       &__text {
         font-size: 18px;
-        padding: 3px;
+        padding: 5px 10px 5px 5px;
+      }
+
+      &:hover {
+        background-color: #cac6c6;
       }
     }
   }
 
   &__sub-header {
-    width: 425px;
-    padding-top: 10px;
+    padding-top: 20px;
     display: flex;
+    width: 100%;
     border-bottom: 1px solid gray;
   }
 
   &__tags {
     padding-top: 10px;
     display: flex;
-    width: 425px;
 
     &__quantity {
-      width: 50px;
+      min-width: 30px;
       text-align: center;
     }
 
     &__food {
-      width: 200px;
+      min-width: 150px;
       padding-left: 50px;
+      flex-grow: 1; //check this
     }
 
     &__price {
-      width: 100px;
+      min-width: 100px;
       text-align: center;
     }
   }
