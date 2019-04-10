@@ -1,0 +1,89 @@
+<template>
+  <div>
+    <div class="total__header">
+        TOTAL:
+        <div class="total__amount"> {{ sumTotal }}</div>
+      </div>
+
+      <div class="total__btn">
+        <div
+            class="total__btn__payment"
+        >Realizar pagamento individual</div>
+
+        <div
+          class="total__btn__payment"
+        >Realizar pagamento total</div>
+      </div>
+
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Total',
+
+  props: {
+    tableInfo: {
+      type: Object,
+      default: null,
+    },
+  },
+
+  computed: {
+    sumTotal() {
+      let total = 0;
+
+      this.tableInfo.orders.forEach((order) => {
+        total += order.price;
+      });
+
+      total = total.toFixed(2);
+
+      return `R$ ${total}`;
+    },
+  },
+
+};
+</script>
+
+<style lang="scss">
+.total {
+  // display: flex;
+
+  &__header {
+    display: flex;
+  }
+
+  &__amount {
+    padding-left: 25px;
+    padding-bottom: 20px;
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    &__payment {
+      cursor: pointer;
+      align-self: center;
+      text-align: center;
+      line-height: 20px;
+      border: 1px solid gray;
+      border-radius: 2px;
+      background-color: #d3d3d3;
+      width: 250px;
+      height: 20px;
+      padding: 5px;
+
+      &:hover {
+        background-color: #bcd2ee;
+      }
+    }
+
+    div + div {
+      margin-top: 15px;
+    }
+  }
+}
+</style>

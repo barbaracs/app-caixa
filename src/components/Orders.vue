@@ -33,20 +33,22 @@
       </div>
     </div>
 
-    <div class="left-part__total">
-      <div class="total__header">
-        TOTAL (R$)
-        <div> {{ sumTotal.toFixed(2) }}
-        </div>
-      </div>
-
-    </div>
+    <total
+      class="left-part__total"
+      :table-info="tableInfo"
+    ></total>
   </div>
 </template>
 
 <script>
+import Total from './Total';
+
 export default {
   name: 'Orders',
+
+  components: {
+    Total,
+  },
 
   props: {
     tableInfo: {
@@ -58,15 +60,6 @@ export default {
   computed: {
     getTableNumber() {
       return `Mesa ${this.tableInfo.number}`;
-    },
-
-    sumTotal() {
-      let total = 0;
-      this.tableInfo.orders.forEach((order) => {
-        total += order.price;
-      });
-
-      return total;
     },
   },
 
@@ -96,6 +89,7 @@ export default {
   &__total {
     // position: absolute;
     padding-top: 100px;
+    padding-right: 30px;
     bottom: 0;
     right: 0;
     left: 0;
@@ -153,12 +147,6 @@ export default {
       min-width: 100px;
       text-align: center;
     }
-  }
-}
-
-.total {
-  &__header {
-    display: flex;
   }
 }
 </style>
