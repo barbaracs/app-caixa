@@ -7,7 +7,7 @@
       <div class="tables">
         <div
           class="tables__numbers"
-          v-for="(table, index) in Tables"
+          v-for="(table, index) in getMockedTables"
           :key="index"
           @click="getTable(table)"
         >{{ table.number }}</div>
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import Tables from '../mock/tables.json';
+// import Tables from '../mock/tables.json';
 import Orders from './Orders';
 
 export default {
@@ -35,10 +35,16 @@ export default {
   },
 
   data: () => ({
-    Tables,
+    // Tables,
     tableInfo: undefined,
     tableSelected: false,
   }),
+
+  computed: {
+    getMockedTables() {
+      return this.$store.state.Tables;
+    },
+  },
 
   methods: {
     getTable(table) {

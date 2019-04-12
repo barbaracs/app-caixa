@@ -1,26 +1,43 @@
 <template>
   <div>
     <div class="total__header">
-        TOTAL:
-        <div class="total__amount"> {{ sumTotal }}</div>
-      </div>
+      TOTAL:
+      <div class="total__amount"> {{ sumTotal }}</div>
+    </div>
 
-      <div class="total__btn">
-        <div
-            class="total__btn__payment"
-        >Realizar pagamento individual</div>
-
-        <div
+    <div class="total__btn">
+      <div
           class="total__btn__payment"
-        >Realizar pagamento total</div>
-      </div>
+          @click="openModal()"
+      >Realizar pagamento individual</div>
 
+      <div
+        class="total__btn__payment"
+      >Realizar pagamento total</div>
+    </div>
+
+    <modal
+      :is-open="isModalOpen"
+      :total-value="totalValue"
+      @close-modal="closeModal()"
+    ></modal>
   </div>
 </template>
 
 <script>
+import Modal from './Modal';
+
 export default {
   name: 'Total',
+
+  components: {
+    Modal,
+  },
+
+  data: () => ({
+    isModalOpen: false,
+    totalValue: 0,
+  }),
 
   props: {
     tableInfo: {
@@ -36,6 +53,8 @@ export default {
       this.tableInfo.orders.forEach((order) => {
         total += order.price;
       });
+      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+      this.totalValue = total;
 
       total = total.toFixed(2);
 
@@ -43,6 +62,15 @@ export default {
     },
   },
 
+  methods: {
+    openModal() {
+      this.isModalOpen = true;
+    },
+
+    closeModal() {
+      this.isModalOpen = false;
+    },
+  },
 };
 </script>
 
