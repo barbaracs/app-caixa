@@ -86,7 +86,7 @@
   "number": "06",
   "orders": [
     {
-      "food": "Temaki Shimeji",
+      "food": "Temaki shimeji",
       "quantity": "2",
       "price": 20.00
     }
@@ -95,13 +95,73 @@
   "valuesPaid": [0],
   "totalPaid": 0
 }, {
-  "number": "07"
+  "number": "07",
+  "orders": [
+    {
+      "food": "Yakissoba",
+      "quantity": "2",
+      "price": 20.00
+    }
+  ],
+  "total": 20.00,
+  "valuesPaid": [0],
+  "totalPaid": 0
 }, {
-  "number": "08"
+  "number": "08",
+  "orders": [
+    {
+      "food": "Shimeji",
+      "quantity": "1",
+      "price": 10.00
+    }, {
+      "food": "Salmão grelhado",
+      "quantity": 2,
+      "price": 20.00
+    }
+  ],
+  "total": 30.00,
+  "valuesPaid": [0],
+  "totalPaid": 0
 }, {
-  "number": "09"
+  "number": "09",
+  "orders": [
+    {
+      "food": "Temaki salmão com shimeji",
+      "quantity": "2",
+      "price": 20.00
+    }, {
+      "food": "Hot roll",
+      "quantity": "10",
+      "price": 20.00
+    }, {
+      "food": "Sunomono",
+      "quantity": "2",
+      "price": 8.00
+    }
+  ],
+  "total": 48.00,
+  "valuesPaid": [0],
+  "totalPaid": 0
 }, {
-  "number": "10"
+  "number": "10",
+  "orders": [
+    {
+      "food": "Sashimi salmão",
+      "quantity": "20",
+      "price": 25.00
+    }, {
+      "food": "Sashimi peixe branco",
+      "quantity": "10",
+      "price": 10.00
+    }, {
+      "food": "Temaki salmão",
+      "quantity": "2",
+      "price": 20.00
+    }
+  ],
+  "total": 55.00,
+  "valuesPaid": [0],
+  "totalPaid": 0
 }, {
   "number": "11"
 }, {

@@ -11,7 +11,10 @@
     >
     </div>
 
-    <div class="total__values-paid">
+    <div
+      v-if="valuesPaid(tableInfo.number).length > 1"
+      class="total__values-paid"
+    >
       Pagamentos parciais:
       <div
         v-for="(value, index) in valuesPaid(tableInfo.number)"
@@ -19,12 +22,12 @@
       >
         <span
           v-if="checkValue(value)"
-        >{{ 'R$ ' + value }}</span>
+        >{{ 'R$ ' + Number(value).toFixed(2) }}</span>
       </div>
     </div>
 
     <div class="total__total-left">
-      <span>{{ 'Restante: R$ ' +  totalLeft(tableInfo.number) }}</span>
+      <span>{{ 'Restante: R$ ' +  totalLeft(tableInfo.number).toFixed(2) }}</span>
     </div>
 
     <div class="total__btn">
@@ -38,7 +41,7 @@
         v-if="checkValue(totalLeft(tableInfo.number))"
         class="total__btn__payment"
         @click="payTotalValue()"
-      >Pagamento restante</div>
+      >Pagamento total</div>
     </div>
 
     <modal
@@ -80,22 +83,6 @@ export default {
     formatTotal() {
       return `R$ ${this.tableInfo.total.toFixed(2)}`;
     },
-
-    // getValuesPaid() {
-    //   // let values = this.$store.getters.valuesPaid(this.tableInfo.number);
-    //   // eslint-disable-next-line prefer-const
-    //   console.log('value: ', this.tableInfo.number);
-    //   const values = this.valuesPaid(this.tableInfo.number);
-    //   // if (values !== undefined) {
-    //   return values;
-    //   // }
-    //   // return '';
-    // },
-
-    // totalLeft() {
-    //   // console.log(this.$store.getters.totalLeft(this.tableInfo.number));
-    //   return this.$store.getters.totalLeft(this.tableInfo.number) || 0;
-    // },
   },
 
   methods: {
@@ -127,7 +114,6 @@ export default {
 
 <style lang="scss">
 .total {
-  // display: flex;
   overflow-y: auto;
 
   &__header {
@@ -147,7 +133,7 @@ export default {
   }
 
   &__total-left {
-    padding-top: 15px;
+    padding: 15px 0px 20px 0px;
   }
 
   &__btn {

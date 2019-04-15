@@ -87,9 +87,7 @@ export default {
   }
 
   &__total {
-    // position: absolute;
     padding-top: 100px;
-    // padding-right: 30px;
     bottom: 0;
     right: 0;
     left: 0;
@@ -140,7 +138,7 @@ export default {
     &__food {
       min-width: 150px;
       padding-left: 50px;
-      flex-grow: 1; //check this
+      flex-grow: 1;
     }
 
     &__price {

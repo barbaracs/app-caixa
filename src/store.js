@@ -26,13 +26,8 @@ export default new Vuex.Store({
     updateValuesPaid(state, payload) {
       const tableIndex = this.getters.selectedTableIndex(payload.table.number);
 
-      // if (state.Tables[tableIndex].valuesPaid) {
       state.Tables[tableIndex].valuesPaid.push(payload.valuePaid);
-      // } else {
-      // state.Tables[tableIndex].valuesPaid = [payload.valuePaid];
-      // }
 
-      // update total value paid
       const sum = Tables[tableIndex].totalPaid !== 0
         ? state.Tables[tableIndex].totalPaid + Number(payload.valuePaid)
         : Number(payload.valuePaid);
