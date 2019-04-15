@@ -46,8 +46,8 @@ export default {
       default: false,
     },
 
-    totalValue: {
-      type: Number,
+    tableInfo: {
+      type: Object,
       required: true,
     },
   },
@@ -58,7 +58,17 @@ export default {
 
   methods: {
     updateTotal() {
-      // this.$emit('close-modal');
+      this.$store.commit({
+        type: 'updateValuesPaid',
+        table: this.tableInfo,
+        valuePaid: this.valuePaid,
+      });
+
+      this.close();
+    },
+
+    close() {
+      this.$emit('close-modal');
     },
   },
 };

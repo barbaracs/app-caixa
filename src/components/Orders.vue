@@ -89,7 +89,7 @@ export default {
   &__total {
     // position: absolute;
     padding-top: 100px;
-    padding-right: 30px;
+    // padding-right: 30px;
     bottom: 0;
     right: 0;
     left: 0;

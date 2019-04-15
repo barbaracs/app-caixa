@@ -1,6 +1,6 @@
 <template>
   <div class="register">
-    <div class="register__header">Cash App</div>
+    <div class="register__header">Sushi Cash</div>
 
     <div class="register__container" v-if="! tableSelected">
       <span class="register__title">Selecione a mesa</span>
@@ -24,7 +24,6 @@
 </template>
 
 <script>
-// import Tables from '../mock/tables.json';
 import Orders from './Orders';
 
 export default {
@@ -35,7 +34,6 @@ export default {
   },
 
   data: () => ({
-    // Tables,
     tableInfo: undefined,
     tableSelected: false,
   }),

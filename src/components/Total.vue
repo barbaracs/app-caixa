@@ -2,29 +2,55 @@
   <div>
     <div class="total__header">
       TOTAL:
-      <div class="total__amount"> {{ sumTotal }}</div>
+      <div class="total__amount"> {{ formatTotal }}</div>
+    </div>
+
+    <div
+      class="total__payments-header"
+      v-text="'Pagamento'"
+    >
+    </div>
+
+    <div class="total__values-paid">
+      Pagamentos parciais:
+      <div
+        v-for="(value, index) in valuesPaid(tableInfo.number)"
+        :key="index"
+      >
+        <span
+          v-if="checkValue(value)"
+        >{{ 'R$ ' + value }}</span>
+      </div>
+    </div>
+
+    <div class="total__total-left">
+      <span>{{ 'Restante: R$ ' +  totalLeft(tableInfo.number) }}</span>
     </div>
 
     <div class="total__btn">
       <div
+          v-if="checkValue(totalLeft(tableInfo.number))"
           class="total__btn__payment"
           @click="openModal()"
-      >Realizar pagamento individual</div>
+      >Pagamento parcial</div>
 
       <div
+        v-if="checkValue(totalLeft(tableInfo.number))"
         class="total__btn__payment"
-      >Realizar pagamento total</div>
+        @click="payTotalValue()"
+      >Pagamento restante</div>
     </div>
 
     <modal
       :is-open="isModalOpen"
-      :total-value="totalValue"
+      :table-info="tableInfo"
       @close-modal="closeModal()"
     ></modal>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Modal from './Modal';
 
 export default {
@@ -36,7 +62,6 @@ export default {
 
   data: () => ({
     isModalOpen: false,
-    totalValue: 0,
   }),
 
   props: {
@@ -47,22 +72,48 @@ export default {
   },
 
   computed: {
-    sumTotal() {
-      let total = 0;
+    ...mapGetters([
+      'valuesPaid',
+      'totalLeft',
+    ]),
 
-      this.tableInfo.orders.forEach((order) => {
-        total += order.price;
-      });
-      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-      this.totalValue = total;
-
-      total = total.toFixed(2);
-
-      return `R$ ${total}`;
+    formatTotal() {
+      return `R$ ${this.tableInfo.total.toFixed(2)}`;
     },
+
+    // getValuesPaid() {
+    //   // let values = this.$store.getters.valuesPaid(this.tableInfo.number);
+    //   // eslint-disable-next-line prefer-const
+    //   console.log('value: ', this.tableInfo.number);
+    //   const values = this.valuesPaid(this.tableInfo.number);
+    //   // if (values !== undefined) {
+    //   return values;
+    //   // }
+    //   // return '';
+    // },
+
+    // totalLeft() {
+    //   // console.log(this.$store.getters.totalLeft(this.tableInfo.number));
+    //   return this.$store.getters.totalLeft(this.tableInfo.number) || 0;
+    // },
   },
 
   methods: {
+    payTotalValue() {
+      this.$store.commit({
+        type: 'updateValuesPaid',
+        table: this.tableInfo,
+        valuePaid: this.totalLeft(this.tableInfo.number),
+      });
+
+      // eslint-disable-next-line no-alert
+      window.alert('Pagamento total realizado');
+    },
+
+    checkValue(value) {
+      return Number(value) > 0;
+    },
+
     openModal() {
       this.isModalOpen = true;
     },
@@ -77,14 +128,26 @@ export default {
 <style lang="scss">
 .total {
   // display: flex;
+  overflow-y: auto;
 
   &__header {
     display: flex;
+    width: 100%;
+    border-bottom: 1px solid gray;
   }
 
   &__amount {
     padding-left: 25px;
     padding-bottom: 20px;
+  }
+
+  &__payments-header {
+    font-size: 20px;
+    padding: 15px 0px 15px 0px;
+  }
+
+  &__total-left {
+    padding-top: 15px;
   }
 
   &__btn {

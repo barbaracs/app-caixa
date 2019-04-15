@@ -14,7 +14,10 @@
       "quantity": 1,
       "price": 10.00
     }
-  ]
+  ],
+  "total": 60.00,
+  "valuesPaid": [0],
+  "totalPaid": 0
 }, {
   "number": "02",
   "orders": [
@@ -27,7 +30,10 @@
       "quantity": 4,
       "price": 8.00
     }
-  ]
+  ],
+  "total": 28.00,
+  "valuesPaid": [0],
+  "totalPaid": 0
 }, {
   "number": "03",
   "orders": [
@@ -40,7 +46,10 @@
       "quantity": 8,
       "price": 20.00
     }
-  ]
+  ],
+  "total": 40.00,
+  "valuesPaid": [0],
+  "totalPaid": 0
 }, {
   "number": "04",
   "orders": [
@@ -53,7 +62,10 @@
       "quantity": 2,
       "price": 20.00
     }
-  ]
+  ],
+  "total": 45.00,
+  "valuesPaid": [0],
+  "totalPaid": 0
 }, {
   "number": "05",
   "orders": [
@@ -66,7 +78,10 @@
       "quantity": 10,
       "price": 15.00
     }
-  ]
+  ],
+  "total": 30.00,
+  "valuesPaid": [0],
+  "totalPaid": 0
 }, {
   "number": "06",
   "orders": [
@@ -75,7 +90,10 @@
       "quantity": "2",
       "price": 20.00
     }
-  ]
+  ],
+  "total": 20.00,
+  "valuesPaid": [0],
+  "totalPaid": 0
 }, {
   "number": "07"
 }, {
